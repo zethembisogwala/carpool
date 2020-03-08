@@ -1,0 +1,16 @@
+<div style="margin: 10px">
+	<mat-list>
+  		<h3 mat-subheader>Today {{date}}</h3>
+  		<mat-divider></mat-divider>
+  		<mat-list-item *ngFor="let hiker of hikers">
+    		<i class="material-icons">accessibility_new</i>
+    		<h4 mat-line>{{hiker.name}}</h4>
+    		<p mat-line> {{hiker.route}} </p>
+    		<mat-hint>16:20</mat-hint>
+    		<mat-divider></mat-divider>
+  		</mat-list-item>
+  	
+  	
+
+	</mat-list>
+</div>
