@@ -16,11 +16,15 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatButtonModule} from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
+import {MatSelectModule} from '@angular/material/select';
 
 import { TabsComponent } from './tabs/tabs/tabs.component';
 import { TravelComponent } from './tabs/tabs/travel/travel.component';
 import { DrivingComponent } from './tabs/tabs/driving/driving.component';
 import { HikingComponent } from './tabs/tabs/hiking/hiking.component';
+
+import { HttpClientModule } from '@angular/common/http';
+import { ApiService } from './services/api.service';
 
 @NgModule({
   declarations: [
@@ -44,11 +48,14 @@ import { HikingComponent } from './tabs/tabs/hiking/hiking.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatButtonModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
+    MatSelectModule
   ],
   providers: [
   	MatDatepickerModule,
-    MatNativeDateModule 
+    MatNativeDateModule,
+    ApiService
   ],
   bootstrap: [AppComponent]
 })

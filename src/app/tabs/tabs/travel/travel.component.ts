@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../../../services/api.service'
 
 @Component({
   selector: 'app-travel',
@@ -15,7 +16,7 @@ export class TravelComponent implements OnInit {
 	to: string = "";
 	date: string = "";
 
-  constructor() {
+  constructor(private api: ApiService) {
 
   }
 
@@ -23,7 +24,20 @@ export class TravelComponent implements OnInit {
   }
 
   save(){
-  	console.log("saved");
+
+  	let trip = {
+  		"FirstName": this.fName,
+  		"LastName": this.lName,
+  		"Phone": this.phone,
+  		"From": this.from,
+  		"To": this.to,
+  		"Date": this.date
+  	};
+
+  	this.api.postTrip(trip).subscribe(result => {
+  		console.log(result);
+  	})
+  	
   }
 
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../../../services/api.service'
 
 export interface Driver {
   name: string;
@@ -44,9 +45,16 @@ export class DrivingComponent implements OnInit {
   	}
   ]
 
-  constructor() { }
+  constructor(private api: ApiService) { 
+
+  	this.api.getTrips().subscribe(results => {
+  	console.log(results);
+  	})
+
+  }
 
   ngOnInit(): void {
+
   }
 
 }

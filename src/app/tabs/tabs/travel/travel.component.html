@@ -31,6 +31,14 @@
 	  <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
   </mat-form-field>
 
+  <mat-form-field appearance="outline">
+  	<mat-label>Are you driving?</mat-label>
+  	<mat-select>
+    	<mat-option value="true">Yes</mat-option>
+    	<mat-option value="false">No</mat-option>
+ 	</mat-select>
+  </mat-form-field>
+
   <br/>
 
   <a mat-stroked-button (click)="save()">Save</a>
