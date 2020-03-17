@@ -21,6 +21,7 @@ export class TravelComponent implements OnInit {
 	driving: string = "";
 
 	loading = false;
+  tripId: string = "";
 
   constructor(
     private api: ApiService, 
@@ -30,6 +31,23 @@ export class TravelComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.tripId = localStorage.getItem('tripId');
+    console.log(this.tripId)
+
+    if(this.tripId){
+      this.api.getTrip(this.tripId).subscribe(result => {
+        console.log(result);
+
+        this.fName = result[0]['FirstName'];
+        this.lName = result[0]['LastName'];
+        this.phone = result[0]['Phone'];
+        this.from = result[0]['From'];
+        this.to = result[0]['To'];
+        this.date = result[0]['Date'];
+        this.time = result[0]['Time'];
+        this.driving = result[0]['Driving'];
+      })
+    }
   }
 
   save(){
@@ -46,19 +64,36 @@ export class TravelComponent implements OnInit {
   		"Driving": this.driving
   	};
 
-  	let successMessage = "Trip posted successfully!"
-  	let action = "Close"
+  	
 
-  	this.api.postTrip(trip).subscribe(result => {
-  		console.log(result);
-      this._router.navigate(['/tabs']);
-  	})
+  	if(this.tripId){
+      this.api.putTrip(this.tripId, trip).subscribe(result => {
+        console.log(result);
+        this.snack('updated');
+        this._router.navigate(['/tabs'])
+      })
+    }
+    else{
+      this.api.postTrip(trip).subscribe(result => {
+        console.log(result);
+        localStorage.setItem('tripId', result['_id'])
+        this.snack('posted');
+        this._router.navigate(['/tabs']);
+    })
+    }
 
-  	this._snackBar.open(successMessage, action, {
-      		duration: 2000,
-    	});
-    	this.loading = false;
+  	
+    this.loading = false;
  
+  }
+
+  snack(operation){
+    let successMessage = `Trip ${operation} successfully!`
+    let action = "Close"
+
+    this._snackBar.open(successMessage, action, {
+          duration: 2000,
+      });
   }
 
 }

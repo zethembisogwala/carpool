@@ -17,4 +17,12 @@ export class ApiService {
   getTrips(){
   	return this.http.get(this.url + 'trips');
   }
+
+  getTrip(tripId){
+  	return this.http.get(this.url + `trips/${tripId}`)
+  }
+
+  putTrip(tripId, trip){
+  	return this.http.put(this.url + `trips/${tripId}`, trip)
+  }
 }
