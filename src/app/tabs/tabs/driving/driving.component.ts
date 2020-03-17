@@ -17,44 +17,37 @@ export class DrivingComponent implements OnInit {
   today = new Date();
   date = this.today.getFullYear()+'/'+(this.today.getMonth()+1)+'/'+this.today.getDate();
 
-  drivers: Driver[] = [
-  	{
-  	name: 'Zethembiso Gwala',
-  	route: 'NKU to ND',
-  	driving: 'true'
-  	},
-  	{
-  	name: 'Peter Parker',
-  	route: 'CA to DC',
-  	driving: 'true'
-  	},
-  	{
-  	name: 'Bucky Barnes',
-  	route: 'NN to ND',
-  	driving: 'true'
-  	},
-  	{
-  	name: 'Duke Diver',
-  	route: 'NND to NBA',
-  	driving: 'true'
-  	},
-  	{
-  	name: 'Tina Turner',
-  	route: 'NP to ND',
-  	driving: 'true'
-  	}
-  ]
+  drivers: any = []
+  myDrivers: any = []
 
   constructor(private api: ApiService) { 
-
-  	this.api.getTrips().subscribe(results => {
-  	console.log(results);
-  	})
-
+  	this.drivers = [];
+  	this.updateDrivers();
   }
 
   ngOnInit(): void {
 
+  }
+
+  updateDrivers(){
+  	this.api.getTrips().subscribe(results => {
+  		this.drivers = results;
+  		console.log(this.drivers);
+  		console.log(this.myDrivers);
+  		this.filterDrivers(this.drivers);
+  	})
+
+  	
+  }
+
+  filterDrivers(drivers){
+  	let driving = [];
+  	for(let p = 0; p < this.drivers.length; p++){
+  		if(this.drivers[p]['Driving'].toLowerCase() === "true"){
+  			driving.push(drivers[p]);
+  		}
+  	}
+  	this.myDrivers = driving;
   }
 
 }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../../../services/api.service'
+import {MatSnackBar} from '@angular/material/snack-bar';
+import { ApiService } from '../../../services/api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-travel',
@@ -15,8 +17,15 @@ export class TravelComponent implements OnInit {
 	from: string = "";
 	to: string = "";
 	date: string = "";
+	time: string = "";
+	driving: string = "";
 
-  constructor(private api: ApiService) {
+	loading = false;
+
+  constructor(
+    private api: ApiService, 
+    private _snackBar: MatSnackBar,
+    private _router: Router) {
 
   }
 
@@ -24,6 +33,7 @@ export class TravelComponent implements OnInit {
   }
 
   save(){
+  	this.loading = true;
 
   	let trip = {
   		"FirstName": this.fName,
@@ -31,13 +41,24 @@ export class TravelComponent implements OnInit {
   		"Phone": this.phone,
   		"From": this.from,
   		"To": this.to,
-  		"Date": this.date
+  		"Date": this.date,
+  		"Time": this.time,
+  		"Driving": this.driving
   	};
+
+  	let successMessage = "Trip posted successfully!"
+  	let action = "Close"
 
   	this.api.postTrip(trip).subscribe(result => {
   		console.log(result);
+      this._router.navigate(['/tabs']);
   	})
-  	
+
+  	this._snackBar.open(successMessage, action, {
+      		duration: 2000,
+    	});
+    	this.loading = false;
+ 
   }
 
 }

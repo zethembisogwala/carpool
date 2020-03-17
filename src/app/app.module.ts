@@ -18,6 +18,9 @@ import {MatButtonModule} from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
 
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
 import { TabsComponent } from './tabs/tabs/tabs.component';
 import { TravelComponent } from './tabs/tabs/travel/travel.component';
 import { DrivingComponent } from './tabs/tabs/driving/driving.component';
@@ -50,7 +53,9 @@ import { ApiService } from './services/api.service';
     MatButtonModule,
     FormsModule,
     HttpClientModule,
-    MatSelectModule
+    MatSelectModule,
+    MatProgressSpinnerModule,
+    MatSnackBarModule
   ],
   providers: [
   	MatDatepickerModule,

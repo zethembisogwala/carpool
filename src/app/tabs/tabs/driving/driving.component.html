@@ -2,11 +2,11 @@
 	<mat-list>
   		<h3 mat-subheader>Today {{date}}</h3>
   		<mat-divider></mat-divider>
-  		<mat-list-item *ngFor="let driver of drivers">
+  		<mat-list-item *ngFor="let driver of myDrivers">
     		<i class="material-icons">directions_car</i>
-    		<h4 mat-line>{{driver.name}}</h4>
-    		<p mat-line> {{driver.route}} </p>
-    		<mat-hint>04:20</mat-hint>
+    		<h4 mat-line>{{driver.FirstName}} {{driver.LastName}}</h4>
+    		<p mat-line> {{driver.From}} to {{driver.To}} </p>
+    		<mat-hint>{{driver.Time}}</mat-hint>
     		<mat-divider></mat-divider>
   		</mat-list-item>
   	

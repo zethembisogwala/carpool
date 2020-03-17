@@ -2,11 +2,11 @@
 	<mat-list>
   		<h3 mat-subheader>Today {{date}}</h3>
   		<mat-divider></mat-divider>
-  		<mat-list-item *ngFor="let hiker of hikers">
+  		<mat-list-item *ngFor="let hiker of myHikers">
     		<i class="material-icons">accessibility_new</i>
-    		<h4 mat-line>{{hiker.name}}</h4>
-    		<p mat-line> {{hiker.route}} </p>
-    		<mat-hint>16:20</mat-hint>
+    		<h4 mat-line>{{hiker.FirstName}} {{hiker.LastName}}</h4>
+    		<p mat-line> {{hiker.From}} to {{hiker.To}}</p>
+    		<mat-hint>{{hiker.Time}}</mat-hint>
     		<mat-divider></mat-divider>
   		</mat-list-item>
   	

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../../../services/api.service';
 
 export interface Hiker {
   name: string;
@@ -16,37 +17,37 @@ export class HikingComponent implements OnInit {
 	today = new Date();
   	date = this.today.getFullYear()+'/'+(this.today.getMonth()+1)+'/'+this.today.getDate();
 
-    hikers: Hiker[] = [
-  	{
-  	name: 'Zethembiso Gwala',
-  	route: 'NKU to ND',
-  	driving: 'true'
-  	},
-  	{
-  	name: 'Peter Parker',
-  	route: 'CA to DC',
-  	driving: 'true'
-  	},
-  	{
-  	name: 'Bucky Barnes',
-  	route: 'NN to ND',
-  	driving: 'true'
-  	},
-  	{
-  	name: 'Duke Diver',
-  	route: 'NND to NBA',
-  	driving: 'true'
-  	},
-  	{
-  	name: 'Tina Turner',
-  	route: 'NP to ND',
-  	driving: 'true'
-  	}
-  ]
+    hikers: any = []
+    myHikers: any = []
 
-  constructor() { }
+  constructor(private api: ApiService) {
+    this.hikers = [];
+    this.updateHikers();
+
+  }
 
   ngOnInit(): void {
+  }
+
+  updateHikers(){
+    this.api.getTrips().subscribe(results => {
+      this.hikers = results;
+      console.log(this.hikers);
+      console.log(this.myHikers);
+      this.filterHikers(this.hikers);
+    })
+
+    
+  }
+
+  filterHikers(hikers){
+    let hiking = [];
+    for(let p = 0; p < hikers.length; p++){
+      if(hikers[p]['Driving'].toLowerCase() === "false"){
+        hiking.push(hikers[p]);
+      }
+    }
+    this.myHikers = hiking;
   }
 
 }
