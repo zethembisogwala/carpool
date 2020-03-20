@@ -28,6 +28,7 @@ import { HikingComponent } from './tabs/tabs/hiking/hiking.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { ApiService } from './services/api.service';
+import { ThreadComponent } from './messaging/thread/thread.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { ApiService } from './services/api.service';
     TabsComponent,
     TravelComponent,
     DrivingComponent,
-    HikingComponent
+    HikingComponent,
+    ThreadComponent
   ],
   imports: [
     BrowserModule,

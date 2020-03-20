@@ -49,8 +49,10 @@
 
   <br/>
 
-  <mat-spinner *ngIf="loading"></mat-spinner>
   <a mat-stroked-button (click)="save()">Save</a>
+  <br/>
+  <br/>
+  <a *ngIf="tripId != null" mat-stroked-button (click)="delete()">Delete</a>
 
 </p>
 

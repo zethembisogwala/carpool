@@ -34,7 +34,7 @@ export class TravelComponent implements OnInit {
     this.tripId = localStorage.getItem('tripId');
     console.log(this.tripId)
 
-    if(this.tripId){
+    if(this.tripId != null){
       this.api.getTrip(this.tripId).subscribe(result => {
         console.log(result);
 
@@ -94,6 +94,15 @@ export class TravelComponent implements OnInit {
     this._snackBar.open(successMessage, action, {
           duration: 2000,
       });
+  }
+
+  delete(){
+    this.api.deleteTrip(this.tripId).subscribe(result => {
+      console.log(result);
+      localStorage.removeItem('tripId');
+      this.snack('deleted');
+      this._router.navigate(['/tabs']);
+    })
   }
 
 }

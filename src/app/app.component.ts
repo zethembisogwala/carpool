@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'arfa';
+  title = 'Carpool';
+
+  constructor(public _router : Router){}
+
+  home(){
+  	this._router.navigate(['/tabs'])
+  }
 }

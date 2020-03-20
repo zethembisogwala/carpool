@@ -25,4 +25,8 @@ export class ApiService {
   putTrip(tripId, trip){
   	return this.http.put(this.url + `trips/${tripId}`, trip)
   }
+
+  deleteTrip(tripId){
+  	return this.http.delete(this.url + `trips/${tripId}`)
+  }
 }
