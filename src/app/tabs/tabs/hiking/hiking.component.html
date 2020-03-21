@@ -2,7 +2,7 @@
 	<mat-list>
   		<h3 mat-subheader>Today {{date}}</h3>
   		<mat-divider></mat-divider>
-  		<mat-list-item *ngFor="let hiker of myHikers">
+  		<mat-list-item *ngFor="let hiker of myHikers" (click)="click(hiker._id)">
     		<i class="material-icons">accessibility_new</i>
     		<h4 mat-line>{{hiker.FirstName}} {{hiker.LastName}}</h4>
     		<p mat-line> {{hiker.From}} to {{hiker.To}}</p>

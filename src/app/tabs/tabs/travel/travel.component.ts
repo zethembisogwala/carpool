@@ -46,6 +46,9 @@ export class TravelComponent implements OnInit {
         this.date = result[0]['Date'];
         this.time = result[0]['Time'];
         this.driving = result[0]['Driving'];
+      },
+      err => {
+        console.log('Could not load trip, check your network connection.')
       })
     }
   }
@@ -71,6 +74,9 @@ export class TravelComponent implements OnInit {
         console.log(result);
         this.snack('updated');
         this._router.navigate(['/tabs'])
+      },
+      err => {
+        console.log('Could not update trip, check your network connection.')
       })
     }
     else{
@@ -79,7 +85,10 @@ export class TravelComponent implements OnInit {
         localStorage.setItem('tripId', result['_id'])
         this.snack('posted');
         this._router.navigate(['/tabs']);
-    })
+    },
+      err => {
+        console.log('Could not post trip, check your network connection.')
+      })
     }
 
   	
@@ -102,7 +111,10 @@ export class TravelComponent implements OnInit {
       localStorage.removeItem('tripId');
       this.snack('deleted');
       this._router.navigate(['/tabs']);
-    })
+    },
+      err => {
+        console.log('Could not delete trip, check your network connection.')
+      })
   }
 
 }

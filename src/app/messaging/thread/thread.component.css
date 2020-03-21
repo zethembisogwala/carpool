@@ -1,0 +1,13 @@
+.messageBox{
+  position: fixed;
+  bottom: 0;
+  width: 90%;
+}
+
+.rounded-corners {
+  border-radius: 25px;
+  background: grey;
+  padding: 20px;
+  width: 200px;
+  height: 150px;
+}

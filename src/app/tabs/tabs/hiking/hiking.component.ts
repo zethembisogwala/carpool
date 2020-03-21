@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../../services/api.service';
+import { Router } from '@angular/router';
 
 export interface Hiker {
   name: string;
@@ -18,9 +19,32 @@ export class HikingComponent implements OnInit {
   	date = this.today.getFullYear()+'/'+(this.today.getMonth()+1)+'/'+this.today.getDate();
 
     hikers: any = []
-    myHikers: any = []
+    myHikers: any = [
+    {
+      "_id": "235245265tgfsdgw3",
+      "FirstName": "John",
+      "LastName": "Cena",
+      "Phone": "765434567",
+      "From": "Ring",
+      "To": "Movie",
+      "Date": "2020/12/12",
+      "Time": "12:00",
+      "Driving": "true"
+    },
+    {
+      "_id": "g76ri7fkdfcf67",
+      "FirstName": "Wade",
+      "LastName": "Barret",
+      "Phone": "876543456",
+      "From": "Ring",
+      "To": "Movie",
+      "Date": "2020/12/12",
+      "Time": "12:00",
+      "Driving": "true"
+    }
+  ]
 
-  constructor(private api: ApiService) {
+  constructor(private api: ApiService, public _router: Router) {
     this.hikers = [];
     this.updateHikers();
 
@@ -35,7 +59,10 @@ export class HikingComponent implements OnInit {
       console.log(this.hikers);
       console.log(this.myHikers);
       this.filterHikers(this.hikers);
-    })
+    },
+      err => {
+        console.log('Could not load trips, check your network connection.')
+      })
 
     
   }
@@ -48,6 +75,11 @@ export class HikingComponent implements OnInit {
       }
     }
     this.myHikers = hiking;
+  }
+
+  click(id){
+    console.log(id);
+    this._router.navigate(['thread', id])
   }
 
 }

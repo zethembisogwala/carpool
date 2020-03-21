@@ -18,7 +18,30 @@ export class DrivingComponent implements OnInit {
   date = this.today.getFullYear()+'/'+(this.today.getMonth()+1)+'/'+this.today.getDate();
 
   drivers: any = []
-  myDrivers: any = []
+  myDrivers: any = [
+    {
+      "_id": "235245265tgfsdgw3",
+      "FirstName": "John",
+      "LastName": "Cena",
+      "Phone": "765434567",
+      "From": "Ring",
+      "To": "Movie",
+      "Date": "2020/12/12",
+      "Time": "12:00",
+      "Driving": "true"
+    },
+    {
+      "_id": "g76ri7fkdfcf67",
+      "FirstName": "Wade",
+      "LastName": "Barret",
+      "Phone": "876543456",
+      "From": "Ring",
+      "To": "Movie",
+      "Date": "2020/12/12",
+      "Time": "12:00",
+      "Driving": "true"
+    }
+  ]
 
   constructor(private api: ApiService) { 
   	this.drivers = [];
@@ -35,7 +58,10 @@ export class DrivingComponent implements OnInit {
   		console.log(this.drivers);
   		console.log(this.myDrivers);
   		this.filterDrivers(this.drivers);
-  	})
+  	},
+      err => {
+        console.log('Could not load trips, check your network connection.')
+      })
 
   	
   }
